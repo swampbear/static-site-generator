@@ -54,9 +54,11 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(html_node.value, "A link to the past")
 
     def test_image(self):
-        node = TextNode("pretty cat", TextType.IMAGE)
+        node = TextNode("pretty cat", TextType.IMAGE, "prettycat.com")
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.tag, "img")
+        self.assertEqual(html_node.props["alt"], "pretty cat")
+        self.assertEqual(html_node.props["src"], "prettycat.com")
 
 
 if __name__ == "__main__":
