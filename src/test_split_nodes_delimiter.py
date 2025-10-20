@@ -44,3 +44,8 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         node = TextNode("You are not _italian_", TextType.TEXT)
         new_nodes = split_nodes_delimiter([node], "_", TextType.ITALIC)
         self.assertEqual(TextNode("italian", TextType.ITALIC, None), new_nodes[1])
+
+    def test_only_one_delimieter(self):
+        node = TextNode("Hold the _door", TextType.TEXT)
+        with self.assertRaises(Exception):
+            _ = split_nodes_delimiter([node], "_", TextType.ITALIC)
