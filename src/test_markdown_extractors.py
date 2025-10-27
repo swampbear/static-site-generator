@@ -57,3 +57,11 @@ class TestMarkdownExtractors(unittest.TestCase):
             ],
             extracted_images,
         )
+
+    def test_no_alt_text(self):
+        text = "This is text with a link ![](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+        extracted_images = extract_markdown_images(text)
+        self.assertListEqual(
+            [("", "https://www.boot.dev")],
+            extracted_images,
+        )
