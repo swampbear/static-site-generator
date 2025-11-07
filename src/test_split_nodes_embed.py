@@ -59,6 +59,16 @@ class TestSplitNodesEmbed(unittest.TestCase):
         with self.assertRaises(Exception):
             _ = split_nodes_image([node])
 
+    def test_empty_image(self):
+        node = TextNode(
+            "This image has no alt text ![](https://i.imgur.com/3elNhQu.png)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_image([node])
+        self.assertListEqual(
+            [TextNode("This image has no alt text ", TextType.TEXT)], new_nodes
+        )
+
     # ===Test Link Splits===
     def test_split_link(self):
         node = TextNode(
@@ -74,6 +84,22 @@ class TestSplitNodesEmbed(unittest.TestCase):
                 TextNode(
                     "to youtube", TextType.LINK, "https://www.youtube.com/@bootdotdev"
                 ),
+            ],
+            new_nodes,
+        )
+
+    def test_empty_link(self):
+
+        node = TextNode(
+            "This is text with a link [to boot dev](https://www.boot.dev) and [](https://www.youtube.com/@bootdotdev)",
+            TextType.TEXT,
+        )
+        new_nodes = split_nodes_link([node])
+        self.assertListEqual(
+            [
+                TextNode("This is text with a link ", TextType.TEXT),
+                TextNode("to boot dev", TextType.LINK, "https://www.boot.dev"),
+                TextNode(" and ", TextType.TEXT),
             ],
             new_nodes,
         )

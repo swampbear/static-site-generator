@@ -20,7 +20,10 @@ def split_nodes_image(old_nodes):
             if parts[i] != "":
                 new_nodes.append(TextNode(parts[i], TextType.TEXT))
             if i < len(parts) - 1:
-                new_nodes.append(TextNode(matches[i][0], TextType.IMAGE, matches[i][1]))
+                if matches[i][0]:
+                    new_nodes.append(
+                        TextNode(matches[i][0], TextType.IMAGE, matches[i][1])
+                    )
 
     if not found_image:
         raise Exception("Error: no image found")
@@ -38,14 +41,16 @@ def split_nodes_link(old_nodes):
         text = node.text
         matches = extract_markdown_links(text)
         parts = re.split(r"[^!]\[.*?\]+\(.*?\)", text)
-        print(parts)
         if len(parts) > 1:
             found_link = True
         for i in range(0, len(parts)):
             if parts[i] != "":
                 new_nodes.append(TextNode(parts[i] + " ", TextType.TEXT))
             if i < len(parts) - 1:
-                new_nodes.append(TextNode(matches[i][0], TextType.LINK, matches[i][1]))
+                if matches[i][0] != "":
+                    new_nodes.append(
+                        TextNode(matches[i][0], TextType.LINK, matches[i][1])
+                    )
     if not found_link:
         raise Exception("Error: no link found")
 
