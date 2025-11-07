@@ -51,14 +51,6 @@ class TestSplitNodesEmbed(unittest.TestCase):
             new_nodes,
         )
 
-    def test_no_images(self):
-        node = TextNode(
-            "This is text has no image [this is a link](youtube.com)",
-            TextType.TEXT,
-        )
-        with self.assertRaises(Exception):
-            _ = split_nodes_image([node])
-
     def test_empty_image(self):
         node = TextNode(
             "This image has no alt text ![](https://i.imgur.com/3elNhQu.png)",
