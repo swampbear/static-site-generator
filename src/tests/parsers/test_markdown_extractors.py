@@ -1,6 +1,6 @@
 import unittest
 
-from markdown_exptractors import extract_markdown_images, extract_markdown_links
+from parsers.markdown_extractors import extract_markdown_images, extract_markdown_links
 
 
 class TestMarkdownExtractors(unittest.TestCase):

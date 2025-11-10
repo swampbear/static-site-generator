@@ -1,7 +1,7 @@
 import unittest
 
-from block_to_block_type import BlockType, block_to_block_type
-from markdown_to_blocks import markdown_to_blocks
+from parsers.block_to_block_type import BlockType, block_to_block_type
+from parsers.markdown_to_blocks import markdown_to_blocks
 
 
 class TestBlockToBlockTypes(unittest.TestCase):

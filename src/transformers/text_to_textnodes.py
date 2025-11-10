@@ -1,6 +1,6 @@
-from split_nodes_delimiter import split_nodes_delimiter
-from split_nodes_embed import split_nodes_image, split_nodes_link
-from textnode import TextNode, TextType
+from transformers.split_nodes_delimiter import split_nodes_delimiter
+from transformers.split_nodes_embed import split_nodes_image, split_nodes_link
+from models.textnode import TextNode, TextType
 
 
 def text_to_textnodes(text):

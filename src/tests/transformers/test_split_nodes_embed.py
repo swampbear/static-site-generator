@@ -1,7 +1,7 @@
 import unittest
 
-from split_nodes_embed import split_nodes_image, split_nodes_link
-from textnode import TextNode, TextType
+from transformers.split_nodes_embed import split_nodes_image, split_nodes_link
+from models.textnode import TextNode, TextType
 
 
 class TestSplitNodesEmbed(unittest.TestCase):
