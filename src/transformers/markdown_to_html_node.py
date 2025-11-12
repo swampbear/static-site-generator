@@ -19,11 +19,14 @@ def text_children(text):
 
     # codeblock has special syntax and is handled manually
     if block_type == BlockType.CODE:
-        code_node = TextNode(text.strip("```"), text_type=TextType.CODE)
+        code_node = TextNode(
+            text.strip("```").strip("\n") + "\n", text_type=TextType.CODE
+        )
         html_node = [text_node_to_html_node(code_node)]
         return [ParentNode(tag="pre", children=html_node)]
 
     # handle rest of text nodes
+    text = " ".join(text.split("\n"))
     text_nodes = text_to_textnodes(text)
     html_nodes = []  # for gathering all children of block
     for tn in text_nodes:
