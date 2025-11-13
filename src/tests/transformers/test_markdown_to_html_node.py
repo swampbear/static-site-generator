@@ -33,5 +33,28 @@ the **same** even with inline stuff
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
+            "<div><pre><code>\nThis is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
+        )
+
+    def test_headings(self):
+        md = """
+# Title heading
+
+## The next largest heading
+
+### Just above the middle
+
+#### Starting to get small here
+
+##### Small but not smallest
+
+###### As small as it gets
+
+####### This should just be a paragraph
+"""
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><h1>Title heading</h1><h2>The next largest heading</h2><h3>Just above the middle</h3><h4>Starting to get small here</h4><h5>Small but not smallest</h5><h6>As small as it gets</h6><p>####### This should just be a paragraph</p></div>",
         )

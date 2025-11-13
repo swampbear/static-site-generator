@@ -19,9 +19,7 @@ def text_children(text):
 
     # codeblock has special syntax and is handled manually
     if block_type == BlockType.CODE:
-        code_node = TextNode(
-            text.strip("```").strip("\n") + "\n", text_type=TextType.CODE
-        )
+        code_node = TextNode(text.strip("```"), text_type=TextType.CODE)
         html_node = [text_node_to_html_node(code_node)]
         return [ParentNode(tag="pre", children=html_node)]
 
@@ -35,4 +33,9 @@ def text_children(text):
 
     if block_type == BlockType.PARAGRAPH:
         return [ParentNode(tag="p", children=html_nodes)]
+    if block_type == BlockType.HEADING:
+        header_size = len(text.split(" ")[0])
+        tag = f"h{header_size}"
+        return [LeafNode(tag=tag, value=text[header_size + 1 :])]
+
     return html_nodes
