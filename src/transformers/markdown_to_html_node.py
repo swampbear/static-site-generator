@@ -34,8 +34,8 @@ def text_children(text):
     if block_type == BlockType.PARAGRAPH:
         return [ParentNode(tag="p", children=html_nodes)]
     if block_type == BlockType.HEADING:
-        header_size = len(text.split(" ")[0])
-        tag = f"h{header_size}"
-        return [LeafNode(tag=tag, value=text[header_size + 1 :])]
+        split_block = text.split(" ", 1)  # splits the Header into hashtags and content
+        tag = f"h{len(split_block[0])}"
+        return [LeafNode(tag=tag, value=split_block[1])]
 
     return html_nodes
