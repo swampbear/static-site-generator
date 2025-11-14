@@ -45,4 +45,4 @@ def text_node_to_html_node(text_node):
                 tag="img", value="", props={"src": text_node.url, "alt": text_node.text}
             )
         case _:
-            ValueError("invalid textype")
+            ValueError("invalid text type")
