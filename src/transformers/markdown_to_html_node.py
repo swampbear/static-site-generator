@@ -25,6 +25,7 @@ def text_children(text):
 
     # handle rest of text nodes
     text = " ".join(text.split("\n"))
+
     text_nodes = text_to_textnodes(text)
     html_nodes = []  # for gathering all children of block
     for tn in text_nodes:
@@ -36,8 +37,30 @@ def text_children(text):
     if block_type == BlockType.HEADING:
         split_block = text.split(
             " ", 1
-        )  # splits the header block into hashtags and content : [#, This is a header]
+        )  # splits the header block into hashtags and content : [#, This is a header
+        heading_text = text_to_textnodes(split_block[1])
+        heading_html = []
+        for tn in heading_text:
+            heading_html_node = text_node_to_html_node(tn)
+            heading_html.append(heading_html_node)
+
         tag = f"h{len(split_block[0])}"
-        return [LeafNode(tag=tag, value=split_block[1])]
+        return [ParentNode(tag=tag, children=heading_html)]
+    if block_type == BlockType.UNORDERED_LIST:
+        split_block = text.split(
+            "-"
+        )  # splits the header block into hashtags and content : [#, This is a header
+        text_nodes = []
+        for line in split_block:
+            unordered_list_text = text_to_textnodes(line.strip(" "))
+            text_nodes.extend(unordered_list_text)
+        unordered_list_html = []
+        for tn in text_nodes:
+            unordered_list_html_node = text_node_to_html_node(tn)
+            unordered_list_html.append(
+                ParentNode(tag="li", children=[unordered_list_html_node])
+            )
+
+        return [ParentNode(tag="ul", children=unordered_list_html)]
 
     return html_nodes

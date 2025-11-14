@@ -58,3 +58,18 @@ the **same** even with inline stuff
             html,
             "<div><h1>Title heading</h1><h2>The next largest heading</h2><h3>Just above the middle</h3><h4>Starting to get small here</h4><h5>Small but not smallest</h5><h6>As small as it gets</h6><p>####### This should just be a paragraph</p></div>",
         )
+
+    def test_unsorted_list(self):
+        md = """
+- this is the greatest unsorted list ever
+- it is undescribably unsorted
+- like so unsorted
+
+
+"""
+        node = markdown_to_html_node(md)
+        html = node.to_html()
+        self.assertEqual(
+            html,
+            "<div><ul><li>this is the greatest unsorted list ever</li><li>it is undescribably unsorted</li><li>like so unsorted</li></ul></div>",
+        )
