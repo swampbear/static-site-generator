@@ -29,7 +29,6 @@ def transform_text_nodes_to_html_nodes(text_nodes, parent_node_tag=None):
 def text_children(text):
     block_type = block_to_block_type(text)
 
-    # codeblock has special syntax and is handled manually
     if block_type == BlockType.CODE:
         return text_to_code_html(text)
     if block_type == BlockType.HEADING:
