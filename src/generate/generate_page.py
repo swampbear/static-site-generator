@@ -27,5 +27,5 @@ def generate_page(from_path, template_path, dest_path):
         with open(dest_path, "w") as file:
             file.write(new_content)
     else:
-        file = open(dest_path, "w")
+        file = open(dest_path, "x")
         file.write(new_content)
