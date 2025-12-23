@@ -1,11 +1,8 @@
-from models.textnode import TextNode, TextType
+from generate.copy_directory import copy_directory
 
 
 def main():
-    new_node = TextNode(
-        "This is some anchor text", TextType.LINK, "https://www.boot.dev"
-    )
-    print(new_node)
 
+    copy_directory("static", "public")
 
 main()
