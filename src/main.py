@@ -13,7 +13,9 @@ def generate_pages_in_directory(source, dest):
     content_dir = os.listdir(source)
     for f in content_dir:
         if os.path.isfile(f"{source}/{f}"):
-            generate_page(f"{source}/{f}", "template.html", f"{dest}/{f[:-3]}.html")
+            if f[-3:] == ".md":
+                generate_page(f"{source}/{f}", "template.html", f"{dest}/{f[:-3]}.html")
+
         else:
             if f not in os.listdir(dest):
                 os.mkdir(f"{dest}/{f}")
