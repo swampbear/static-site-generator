@@ -13,7 +13,6 @@ def generate_page(from_path, template_path, dest_path, basepath):
     template_file = open(template_path, "r")
     template_content = template_file.read()
 
-
     node= markdown_to_html_node(markdown_content)
     html = node.to_html()
 
@@ -22,8 +21,8 @@ def generate_page(from_path, template_path, dest_path, basepath):
     new_content = template_content
     new_content = new_content.replace("{{ Title }}", title)
     new_content = new_content.replace("{{ Content }}", html)
-    new_content = new_content.replace('href="/', f'href="{basepath}')
-    new_content = new_content.replace('src="/', f'src="{basepath}')
+    new_content = new_content.replace('href="/', f'href="{basepath}docs/')
+    new_content = new_content.replace('src="/', f'src="{basepath}docs/')
 
     if os.path.isfile(dest_path):
         with open(dest_path, "w") as file:
