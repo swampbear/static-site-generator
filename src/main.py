@@ -17,4 +17,5 @@ def main():
 
     generate_pages_recursive("content", "template.html",  docs_path, base_path)
 
+
 main()
