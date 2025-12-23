@@ -38,15 +38,15 @@ the **same** even with inline stuff
 
     def test_quote(self):
         md = """
-> This is a really cool quote
+>This is a really cool quote
 >
-> Like really cool
+>Like really cool
 """
         node = markdown_to_html_node(md)
         html = node.to_html()
         self.assertEqual(
             html,
-            "<div><blockquote> This is a really cool quote\n\n Like really cool</blockquote></div>",
+            "<div><blockquote>This is a really cool quote\n\nLike really cool</blockquote></div>",
         )
 
     def test_headings(self):

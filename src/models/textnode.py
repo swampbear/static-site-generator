@@ -1,6 +1,6 @@
 from enum import Enum
 
-from models.htmlnode import HTMLNode, LeafNode
+from models.htmlnode import LeafNode
 
 
 class TextType(Enum):
@@ -39,10 +39,10 @@ def text_node_to_html_node(text_node):
         case TextType.CODE:
             return LeafNode(tag="code", value=text_node.text)
         case TextType.LINK:
-            return LeafNode(tag="a", value=text_node.text)
+            return LeafNode(tag="a", value=text_node.text, props={"href":text_node.url})
         case TextType.IMAGE:
             return LeafNode(
-                tag="img", value="", props={"src": text_node.url, "alt": text_node.text}
+                tag="img", value=" ", props={"src": text_node.url, "alt": text_node.text}
             )
         case _:
             ValueError("invalid text type")

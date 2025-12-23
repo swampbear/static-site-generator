@@ -45,6 +45,7 @@ class LeafNode(HTMLNode):
 
 
 class ParentNode(HTMLNode):
+
     def __init__(self, tag, children, props=None) -> None:
         super().__init__(tag=tag, children=children, props=props)
 
@@ -62,3 +63,4 @@ class ParentNode(HTMLNode):
         if self.props:
             string_repr += f",{self.props_to_html()}"
         return string_repr + ")"
+

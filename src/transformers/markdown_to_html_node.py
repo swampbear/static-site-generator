@@ -69,7 +69,7 @@ def text_to_code_html(text):
 
 def text_to_quote_html(text):
     quote_text = text.replace(">", "")
-    text_nodes = text_to_textnodes(quote_text)
+    text_nodes = text_to_textnodes(quote_text.strip())
     quote_nodes = transform_text_nodes_to_html_nodes(text_nodes)
     return [ParentNode(tag="blockquote", children=quote_nodes)]
 
