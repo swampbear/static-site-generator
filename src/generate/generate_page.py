@@ -22,8 +22,8 @@ def generate_page(from_path, template_path, dest_path, basepath):
     new_content = template_content
     new_content = new_content.replace("{{ Title }}", title)
     new_content = new_content.replace("{{ Content }}", html)
-    new_content = new_content.replace('href="/', f'href="/{basepath}')
-    new_content = new_content.replace('src="/', f'src="/{basepath}')
+    new_content = new_content.replace('href="/', f'href="{basepath}')
+    new_content = new_content.replace('src="/', f'src="{basepath}')
 
     if os.path.isfile(dest_path):
         with open(dest_path, "w") as file:
