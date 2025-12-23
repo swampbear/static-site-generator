@@ -5,7 +5,7 @@ from generate.copy_directory import copy_directory
 
 def main():
     args = sys.argv
-    base_path = "/"
+    base_path = ""
     if len(args) == 2:
         base_path = sys.argv[1]+base_path
     elif len(args)>2:
